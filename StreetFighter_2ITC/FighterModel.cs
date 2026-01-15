@@ -18,9 +18,31 @@ namespace StreetFighter_2ITC
 
         public int Speed { get; set; }
 
+        public Image Image { get; set; }
+
         public FighterModel()
         {
             Name ??= "Noname";
+            Image ??= new Bitmap(100, 100);
+        }
+
+        public void LoadImage()
+        {
+            if (File.Exists($"fighters/{Name}.png"))
+            {
+                try
+                {
+                    Image = Image.FromFile($"fighters/{Name}.png");
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Chyba při načítání obrázku pro {Name}: {ex.Message}");
+                }
+            }
+            else
+            {
+                Console.WriteLine($"Nepodařilo se najít obrázek pro {Name}");
+            }
         }
     }
 }

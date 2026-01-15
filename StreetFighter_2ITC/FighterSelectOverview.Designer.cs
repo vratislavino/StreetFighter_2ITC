@@ -39,6 +39,7 @@
             // 
             // pictureBox1
             // 
+            pictureBox1.BackgroundImageLayout = ImageLayout.Zoom;
             pictureBox1.BorderStyle = BorderStyle.FixedSingle;
             pictureBox1.Location = new Point(15, 19);
             pictureBox1.Name = "pictureBox1";

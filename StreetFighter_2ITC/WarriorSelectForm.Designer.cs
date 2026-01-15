@@ -74,6 +74,7 @@
             Margin = new Padding(2);
             Name = "WarriorSelectForm";
             Text = "Form1";
+            Load += WarriorSelectForm_Load;
             ResumeLayout(false);
         }
 

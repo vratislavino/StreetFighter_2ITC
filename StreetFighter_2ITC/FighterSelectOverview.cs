@@ -24,6 +24,8 @@ namespace StreetFighter_2ITC
             label3.Text = $"Dexterity: {model.Dexterity}";
             label4.Text = $"Damage: {model.Damage}";
             label5.Text = $"Speed: {model.Speed}";
+
+            pictureBox1.BackgroundImage = model.Image;
         }
     }
 }
