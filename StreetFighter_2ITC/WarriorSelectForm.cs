@@ -25,13 +25,13 @@ namespace StreetFighter_2ITC
             availableFighters.ForEach(f => f.LoadImage());
 
             CreateFighterThumbnails();
-            
+
             fighterSelectOverview1.SetFighter(availableFighters.First());
         }
 
         private void CreateFighterThumbnails()
         {
-            foreach(var f in availableFighters)
+            foreach (var f in availableFighters)
             {
                 FighterSelectThumbnail fst = new FighterSelectThumbnail();
                 fst.SetFighter(f);
@@ -42,9 +42,9 @@ namespace StreetFighter_2ITC
 
         private void OnFighterSelected(FighterModel model)
         {
-            foreach(var c in flowLayoutPanel1.Controls)
+            foreach (var c in flowLayoutPanel1.Controls)
             {
-                if(c is FighterSelectThumbnail fst)
+                if (c is FighterSelectThumbnail fst)
                 {
                     (c as FighterSelectThumbnail).IsSelected = false;
                 }
@@ -52,6 +52,13 @@ namespace StreetFighter_2ITC
 
 
             fighterSelectOverview1.SetFighter(model);
+        }
+
+        private void startGameButton_Click(object sender, EventArgs e)
+        {
+            Random rand = new Random();
+            var enemyIndex = rand.Next(0, availableFighters.Count);
+            fighterSelectOverview2.SetFighter(availableFighters[enemyIndex]);
         }
     }
 }

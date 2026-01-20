@@ -31,6 +31,7 @@
             flowLayoutPanel1 = new FlowLayoutPanel();
             startGameButton = new Button();
             fighterSelectOverview1 = new FighterSelectOverview();
+            fighterSelectOverview2 = new FighterSelectOverview();
             SuspendLayout();
             // 
             // flowLayoutPanel1
@@ -52,6 +53,7 @@
             startGameButton.TabIndex = 1;
             startGameButton.Text = "Start game";
             startGameButton.UseVisualStyleBackColor = true;
+            startGameButton.Click += startGameButton_Click;
             // 
             // fighterSelectOverview1
             // 
@@ -63,11 +65,22 @@
             fighterSelectOverview1.Size = new Size(264, 413);
             fighterSelectOverview1.TabIndex = 2;
             // 
+            // fighterSelectOverview2
+            // 
+            fighterSelectOverview2.BackColor = Color.FromArgb(255, 224, 192);
+            fighterSelectOverview2.BorderStyle = BorderStyle.FixedSingle;
+            fighterSelectOverview2.Location = new Point(737, 11);
+            fighterSelectOverview2.Margin = new Padding(2);
+            fighterSelectOverview2.Name = "fighterSelectOverview2";
+            fighterSelectOverview2.Size = new Size(264, 413);
+            fighterSelectOverview2.TabIndex = 3;
+            // 
             // WarriorSelectForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1007, 699);
+            Controls.Add(fighterSelectOverview2);
             Controls.Add(fighterSelectOverview1);
             Controls.Add(startGameButton);
             Controls.Add(flowLayoutPanel1);
@@ -83,5 +96,6 @@
         private FlowLayoutPanel flowLayoutPanel1;
         private Button startGameButton;
         private FighterSelectOverview fighterSelectOverview1;
+        private FighterSelectOverview fighterSelectOverview2;
     }
 }
