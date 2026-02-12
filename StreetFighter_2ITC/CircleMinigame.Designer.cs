@@ -1,6 +1,6 @@
 ﻿namespace StreetFighter_2ITC
 {
-    partial class Minigame
+    partial class CircleMinigame
     {
         /// <summary> 
         /// Vyžaduje se proměnná návrháře.

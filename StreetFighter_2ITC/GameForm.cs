@@ -52,8 +52,18 @@ namespace StreetFighter_2ITC
             }
         }
 
-        private void StartRandomMinigame() { 
-            // choose random minigame
+        private void StartRandomMinigame() {
+            // choose random minigame - later
+            
+            CircleMinigame minigame = new CircleMinigame();
+            panel1.Controls.Add(minigame);
+
+            minigame.MinigameEnded += () =>
+            {
+                opponentFighter.CurrentHp -= minigame.GetScore();
+            };
+            minigame.StartMinigame();
+
             // load minigame
             // start minigame
         }

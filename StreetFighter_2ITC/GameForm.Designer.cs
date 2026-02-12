@@ -30,10 +30,10 @@
         {
             components = new System.ComponentModel.Container();
             richTextBox1 = new RichTextBox();
-            minigame1 = new Minigame();
             playerFighter = new InGameFighter();
             opponentFighter = new InGameFighter();
             gameflowTimer = new System.Windows.Forms.Timer(components);
+            panel1 = new Panel();
             SuspendLayout();
             // 
             // richTextBox1
@@ -44,19 +44,9 @@
             richTextBox1.TabIndex = 0;
             richTextBox1.Text = "";
             // 
-            // minigame1
-            // 
-            minigame1.BackColor = SystemColors.Info;
-            minigame1.BorderStyle = BorderStyle.FixedSingle;
-            minigame1.Location = new Point(201, 12);
-            minigame1.Name = "minigame1";
-            minigame1.Size = new Size(400, 400);
-            minigame1.TabIndex = 1;
-            // 
             // playerFighter
             // 
             playerFighter.BorderStyle = BorderStyle.FixedSingle;
-            playerFighter.CurrentHp = 0;
             playerFighter.Location = new Point(16, 12);
             playerFighter.Name = "playerFighter";
             playerFighter.Size = new Size(170, 261);
@@ -65,7 +55,6 @@
             // opponentFighter
             // 
             opponentFighter.BorderStyle = BorderStyle.FixedSingle;
-            opponentFighter.CurrentHp = 0;
             opponentFighter.Location = new Point(621, 12);
             opponentFighter.Name = "opponentFighter";
             opponentFighter.Size = new Size(170, 261);
@@ -76,14 +65,22 @@
             gameflowTimer.Interval = 1000;
             gameflowTimer.Tick += gameflowTimer_Tick;
             // 
+            // panel1
+            // 
+            panel1.BorderStyle = BorderStyle.FixedSingle;
+            panel1.Location = new Point(192, 12);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(423, 400);
+            panel1.TabIndex = 4;
+            // 
             // GameForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(809, 526);
+            Controls.Add(panel1);
             Controls.Add(opponentFighter);
             Controls.Add(playerFighter);
-            Controls.Add(minigame1);
             Controls.Add(richTextBox1);
             Name = "GameForm";
             Text = "GameForm";
@@ -94,9 +91,9 @@
         #endregion
 
         private RichTextBox richTextBox1;
-        private Minigame minigame1;
         private InGameFighter playerFighter;
         private InGameFighter opponentFighter;
         private System.Windows.Forms.Timer gameflowTimer;
+        private Panel panel1;
     }
 }
