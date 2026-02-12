@@ -32,6 +32,7 @@
             startGameButton = new Button();
             fighterSelectOverview1 = new FighterSelectOverview();
             fighterSelectOverview2 = new FighterSelectOverview();
+            button1 = new Button();
             SuspendLayout();
             // 
             // flowLayoutPanel1
@@ -46,7 +47,7 @@
             // startGameButton
             // 
             startGameButton.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            startGameButton.Location = new Point(379, 347);
+            startGameButton.Location = new Point(378, 337);
             startGameButton.Margin = new Padding(2);
             startGameButton.Name = "startGameButton";
             startGameButton.Size = new Size(242, 58);
@@ -75,11 +76,22 @@
             fighterSelectOverview2.Size = new Size(264, 413);
             fighterSelectOverview2.TabIndex = 3;
             // 
+            // button1
+            // 
+            button1.Location = new Point(598, 400);
+            button1.Name = "button1";
+            button1.Size = new Size(134, 23);
+            button1.TabIndex = 4;
+            button1.Text = "Choose opponent";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
+            // 
             // WarriorSelectForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1007, 699);
+            Controls.Add(button1);
             Controls.Add(fighterSelectOverview2);
             Controls.Add(fighterSelectOverview1);
             Controls.Add(startGameButton);
@@ -97,5 +109,6 @@
         private Button startGameButton;
         private FighterSelectOverview fighterSelectOverview1;
         private FighterSelectOverview fighterSelectOverview2;
+        private Button button1;
     }
 }

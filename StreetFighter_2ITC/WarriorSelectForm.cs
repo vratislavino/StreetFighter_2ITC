@@ -15,6 +15,9 @@ namespace StreetFighter_2ITC
             new FighterModel() { Name = "Guile", MaxHp = 110, Dexterity = 10, Damage = 25, Speed = 8 }
         };
 
+        int currentFighter = -1;
+        int enemyFighter = -1;
+
         public WarriorSelectForm()
         {
             InitializeComponent();
@@ -26,7 +29,7 @@ namespace StreetFighter_2ITC
 
             CreateFighterThumbnails();
 
-            fighterSelectOverview1.SetFighter(availableFighters.First());
+            OnFighterSelected(availableFighters.First());
         }
 
         private void CreateFighterThumbnails()
@@ -50,14 +53,45 @@ namespace StreetFighter_2ITC
                 }
             }
 
-
+            currentFighter = availableFighters.IndexOf(model);
             fighterSelectOverview1.SetFighter(model);
         }
-
+        
         private void startGameButton_Click(object sender, EventArgs e)
         {
+            if (currentFighter == -1) {
+                MessageBox.Show("You dont have fighter!");
+                return;
+            }
+
+            if (enemyFighter == -1) {
+                button1_Click(null, null);
+            }
+
+            GameForm gf = new GameForm(
+                availableFighters[currentFighter],
+                availableFighters[enemyFighter]
+                );
+            gf.Show();
+            
+            this.Hide();
+
+            gf.FormClosing += (s, evt) => {
+                this.Show();
+            };
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            int enemyIndex = -1;
             Random rand = new Random();
-            var enemyIndex = rand.Next(0, availableFighters.Count);
+            
+            do
+            {
+                enemyIndex = rand.Next(0, availableFighters.Count);
+            } while (enemyIndex == currentFighter);
+
+            enemyFighter = enemyIndex;
             fighterSelectOverview2.SetFighter(availableFighters[enemyIndex]);
         }
     }
