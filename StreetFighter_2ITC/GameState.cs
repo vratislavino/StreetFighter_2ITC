@@ -9,6 +9,7 @@ namespace StreetFighter_2ITC
     {
         WaitingForMinigame,
         PlayingMinigame,
-        ShowingWin
+        ShowingWin,
+        EnemyTurn
     }
 }

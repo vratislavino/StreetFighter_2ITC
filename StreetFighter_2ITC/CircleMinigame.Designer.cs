@@ -30,14 +30,17 @@
         {
             SuspendLayout();
             // 
-            // Minigame
+            // CircleMinigame
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Info;
             BorderStyle = BorderStyle.FixedSingle;
-            Name = "Minigame";
+            DoubleBuffered = true;
+            Name = "CircleMinigame";
             Size = new Size(400, 400);
+            Paint += CircleMinigame_Paint;
+            MouseClick += this.CircleMinigame_MouseClick;
             ResumeLayout(false);
         }
 

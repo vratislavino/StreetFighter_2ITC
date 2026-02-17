@@ -34,13 +34,14 @@
             opponentFighter = new InGameFighter();
             gameflowTimer = new System.Windows.Forms.Timer(components);
             panel1 = new Panel();
+            label1 = new Label();
             SuspendLayout();
             // 
             // richTextBox1
             // 
-            richTextBox1.Location = new Point(201, 418);
+            richTextBox1.Location = new Point(203, 442);
             richTextBox1.Name = "richTextBox1";
-            richTextBox1.Size = new Size(400, 96);
+            richTextBox1.Size = new Size(400, 90);
             richTextBox1.TabIndex = 0;
             richTextBox1.Text = "";
             // 
@@ -73,11 +74,22 @@
             panel1.Size = new Size(423, 400);
             panel1.TabIndex = 4;
             // 
+            // label1
+            // 
+            label1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            label1.Location = new Point(192, 415);
+            label1.Name = "label1";
+            label1.Size = new Size(423, 23);
+            label1.TabIndex = 5;
+            label1.Text = "label1";
+            label1.TextAlign = ContentAlignment.MiddleCenter;
+            // 
             // GameForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(809, 526);
+            ClientSize = new Size(809, 544);
+            Controls.Add(label1);
             Controls.Add(panel1);
             Controls.Add(opponentFighter);
             Controls.Add(playerFighter);
@@ -95,5 +107,6 @@
         private InGameFighter opponentFighter;
         private System.Windows.Forms.Timer gameflowTimer;
         private Panel panel1;
+        private Label label1;
     }
 }

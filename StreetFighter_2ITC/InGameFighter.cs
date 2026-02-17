@@ -19,6 +19,8 @@ namespace StreetFighter_2ITC
             set {
                 currentHp = Math.Max(value, 0);
                 progressBar1.Value = currentHp;
+                label1.Text = $"{currentHp}/{progressBar1.Maximum}";
+
             }
         }
 

@@ -8,15 +8,20 @@ using System.Windows.Forms;
 
 namespace StreetFighter_2ITC
 {
+    // TODO: Check jaký fighter svítí jako aktuální
+
     public partial class GameForm : Form
     {
-        private int secondsToStart = 3;
+        private const int PREMINIGAME_TIMER = 3;
+        private int secondsToStart = PREMINIGAME_TIMER;
 
         FighterModel player;
         FighterModel opponent;
 
         InGameFighter currentFighter = null;
-        GameState currentState = GameState.WaitingForMinigame;
+        GameState currentState;
+
+        Random generator = new Random();
 
         public GameForm()
         {
@@ -34,6 +39,11 @@ namespace StreetFighter_2ITC
 
         private void GameForm_Load(object sender, EventArgs e)
         {
+            ChooseFirstFighter();
+            ChangeGameState(currentFighter == opponentFighter ?
+                GameState.EnemyTurn :
+                GameState.WaitingForMinigame);
+
             gameflowTimer.Start();
         }
 
@@ -42,14 +52,28 @@ namespace StreetFighter_2ITC
             if (currentState == GameState.WaitingForMinigame)
             {
                 secondsToStart--;
+                AddLog($"Minigame starts in {secondsToStart}");
                 if (secondsToStart == 0)
                 {
-                    currentState = GameState.PlayingMinigame;
+                    ChangeGameState(GameState.PlayingMinigame);
                     gameflowTimer.Stop();
-                    ChooseFighter();
                     StartRandomMinigame();
                 }
             }
+
+            if(currentState == GameState.EnemyTurn)
+            {
+                MockEnemyTurn();
+            }
+        }
+
+        private void MockEnemyTurn() {
+            int damage = generator.Next(1, 9);
+            playerFighter.CurrentHp -= damage;
+            AddLog($"{opponent.Name} damaged {player.Name} - {damage} hp");
+
+            ChangeGameState(GameState.WaitingForMinigame);
+            secondsToStart = PREMINIGAME_TIMER;
         }
 
         private void StartRandomMinigame() {
@@ -61,6 +85,11 @@ namespace StreetFighter_2ITC
             minigame.MinigameEnded += () =>
             {
                 opponentFighter.CurrentHp -= minigame.GetScore();
+                AddLog($"{player.Name} damaged {opponent.Name} - {minigame.GetScore()} hp");
+                minigame.Dispose();
+                SwitchFighter();
+                ChangeGameState(GameState.EnemyTurn);
+                gameflowTimer.Start();
             };
             minigame.StartMinigame();
 
@@ -68,7 +97,13 @@ namespace StreetFighter_2ITC
             // start minigame
         }
 
-        private void ChooseFighter()
+        private void SwitchFighter() { 
+            currentFighter.IsPlaying = false;
+            currentFighter = currentFighter == playerFighter ? opponentFighter : playerFighter;
+            currentFighter.IsPlaying = true;
+        }
+
+        private void ChooseFirstFighter()
         {
             Random r = new Random();
             int num = r.Next(0, player.Speed + opponent.Speed);
@@ -85,6 +120,16 @@ namespace StreetFighter_2ITC
             }
 
             currentFighter.IsPlaying = true;
+        }
+
+        private void ChangeGameState(GameState gs) {
+            currentState = gs;
+            label1.Text = gs.ToString();
+        }
+
+        private void AddLog(string log)
+        {
+            richTextBox1.Text = log + "\n" + richTextBox1.Text;
         }
     }
 }
