@@ -5,10 +5,12 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace StreetFighter_2ITC
 {
     // TODO: Check jaký fighter svítí jako aktuální
+    // *
 
     public partial class GameForm : Form
     {
@@ -22,6 +24,8 @@ namespace StreetFighter_2ITC
         GameState currentState;
 
         Random generator = new Random();
+
+        float damageMultiplier = 0.1f;
 
         public GameForm()
         {
@@ -67,12 +71,29 @@ namespace StreetFighter_2ITC
             }
         }
 
+        private int CalculateDamage(int baseDmg, int turnDamage) {
+            return (int)(turnDamage * damageMultiplier * baseDmg);
+        }
+
+        private bool Dodged(int dexterity)
+        {
+            return generator.Next(0, 100) < dexterity;
+        }
+
         private void MockEnemyTurn() {
-            int damage = generator.Next(1, 9);
-            playerFighter.CurrentHp -= damage;
-            AddLog($"{opponent.Name} damaged {player.Name} - {damage} hp");
+            if (Dodged(player.Dexterity))
+            {
+                AddLog($"{player.Name} dodged!");
+            }
+            else {
+                int damage = generator.Next(1, 9);
+                int dmgToDeal = CalculateDamage(opponent.Damage, damage);
+                playerFighter.CurrentHp -= dmgToDeal;
+                AddLog($"{opponent.Name} damaged {player.Name} - {dmgToDeal} hp");
+            }
 
             ChangeGameState(GameState.WaitingForMinigame);
+            SwitchFighter();
             secondsToStart = PREMINIGAME_TIMER;
         }
 
@@ -84,8 +105,16 @@ namespace StreetFighter_2ITC
 
             minigame.MinigameEnded += () =>
             {
-                opponentFighter.CurrentHp -= minigame.GetScore();
-                AddLog($"{player.Name} damaged {opponent.Name} - {minigame.GetScore()} hp");
+                if (Dodged(opponent.Dexterity))
+                {
+                    AddLog($"{opponent.Name} dodged!");
+                }
+                else {
+                    int dmg = CalculateDamage(player.Damage, minigame.GetScore());
+                    opponentFighter.CurrentHp -= dmg;
+                    AddLog($"{player.Name} damaged {opponent.Name} - {dmg} hp");
+                }
+                
                 minigame.Dispose();
                 SwitchFighter();
                 ChangeGameState(GameState.EnemyTurn);
