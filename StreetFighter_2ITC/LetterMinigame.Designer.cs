@@ -39,6 +39,8 @@
             DoubleBuffered = true;
             Name = "LetterMinigame";
             Size = new Size(400, 400);
+            Paint += LetterMinigame_Paint;
+            KeyDown += LetterMinigame_KeyDown;
             ResumeLayout(false);
         }
 

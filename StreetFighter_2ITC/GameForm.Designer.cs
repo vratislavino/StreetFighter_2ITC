@@ -41,6 +41,8 @@
             // 
             richTextBox1.Location = new Point(203, 442);
             richTextBox1.Name = "richTextBox1";
+            richTextBox1.Enabled = false;
+            richTextBox1.ReadOnly = true;
             richTextBox1.Size = new Size(400, 90);
             richTextBox1.TabIndex = 0;
             richTextBox1.Text = "";

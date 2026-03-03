@@ -100,7 +100,9 @@ namespace StreetFighter_2ITC
         private void StartRandomMinigame() {
             // choose random minigame - later
             
-            CircleMinigame minigame = new CircleMinigame();
+            //CircleMinigame minigame = new CircleMinigame();
+            LetterMinigame minigame = new LetterMinigame();
+
             panel1.Controls.Add(minigame);
 
             minigame.MinigameEnded += () =>
