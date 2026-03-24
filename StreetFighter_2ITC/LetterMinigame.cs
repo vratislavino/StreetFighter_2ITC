@@ -8,59 +8,26 @@ using System.Windows.Forms;
 
 namespace StreetFighter_2ITC
 {
-    public partial class LetterMinigame : UserControl, IMinigame
+    public partial class LetterMinigame : TimedMinigame
     {
-        public event Action MinigameEnded;
-        private int score;
-
-        float maxTime = 5f;
-        float remainingTime;
-
-        System.Windows.Forms.Timer timer;
-
         string text = "ASDFG";
         string doneText = "";
 
         public LetterMinigame()
         {
             InitializeComponent();
-            timer = new System.Windows.Forms.Timer();
-            timer.Interval = 17; // ~60 FPS
-            timer.Tick += Timer_Tick;
-            timer.Start();
         }
 
-        private void Timer_Tick(object sender, EventArgs e)
+        public override void StartMinigame()
         {
-            remainingTime -= timer.Interval / 1000f;
-            
-            if (remainingTime <= 0) 
-                GameOver();
-            
-            Invalidate();
-        }
-
-        private void GameOver()
-        {
-            timer.Stop();
-            MinigameEnded?.Invoke();
-        }
-
-        public int GetScore()
-        {
-            return score;
-        }
-
-        public void StartMinigame()
-        {
-            remainingTime = maxTime;
+            base.StartMinigame();
             GenerateText(6);
             Focus();
         }
 
-        private void LetterMinigame_Paint(object sender, PaintEventArgs e)
+        protected override void TimedMinigame_Paint(object sender, PaintEventArgs e)
         {
-            PaintRemainingTime(e.Graphics);
+            base.TimedMinigame_Paint(sender, e);
             PaintText(e.Graphics);
         }
 
@@ -77,15 +44,6 @@ namespace StreetFighter_2ITC
                 Brushes.GreenYellow,
                 100,
                 Height / 2);
-        }
-
-        private void PaintRemainingTime(Graphics g) {
-            g.FillRectangle(
-                Brushes.DarkKhaki, 
-                0, 
-                Height - 40, 
-                (remainingTime/maxTime) * Width, 
-                40);
         }
 
         private void LetterMinigame_KeyDown(object sender, KeyEventArgs e)

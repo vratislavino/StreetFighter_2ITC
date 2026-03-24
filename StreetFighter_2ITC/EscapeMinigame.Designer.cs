@@ -1,6 +1,6 @@
 ﻿namespace StreetFighter_2ITC
 {
-    partial class LetterMinigame
+    partial class EscapeMinigame
     {
         /// <summary> 
         /// Vyžaduje se proměnná návrháře.
@@ -28,19 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            SuspendLayout();
-            // 
-            // LetterMinigame
-            // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
-            AutoScaleMode = AutoScaleMode.Font;
-            BackColor = SystemColors.GradientActiveCaption;
-            BorderStyle = BorderStyle.FixedSingle;
-            DoubleBuffered = true;
-            Name = "LetterMinigame";
-            Size = new Size(400, 400);
-            KeyDown += LetterMinigame_KeyDown;
-            ResumeLayout(false);
+            components = new System.ComponentModel.Container();
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
         }
 
         #endregion

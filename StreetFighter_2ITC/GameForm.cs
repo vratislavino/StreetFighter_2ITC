@@ -9,8 +9,6 @@ using static System.Net.Mime.MediaTypeNames;
 
 namespace StreetFighter_2ITC
 {
-    // TODO: Check jaký fighter svítí jako aktuální
-    // *
 
     public partial class GameForm : Form
     {
@@ -101,8 +99,8 @@ namespace StreetFighter_2ITC
             // choose random minigame - later
             
             //CircleMinigame minigame = new CircleMinigame();
-            LetterMinigame minigame = new LetterMinigame();
-
+            //LetterMinigame minigame = new LetterMinigame();
+            OrderMinigame minigame = new OrderMinigame();
             panel1.Controls.Add(minigame);
 
             minigame.MinigameEnded += () =>

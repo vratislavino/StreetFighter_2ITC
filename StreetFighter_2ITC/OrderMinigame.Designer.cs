@@ -1,6 +1,6 @@
 ﻿namespace StreetFighter_2ITC
 {
-    partial class LetterMinigame
+    partial class OrderMinigame
     {
         /// <summary> 
         /// Vyžaduje se proměnná návrháře.
@@ -30,16 +30,14 @@
         {
             SuspendLayout();
             // 
-            // LetterMinigame
+            // OrderMinigame
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = SystemColors.GradientActiveCaption;
-            BorderStyle = BorderStyle.FixedSingle;
+            BackColor = Color.FromArgb(255, 192, 128);
             DoubleBuffered = true;
-            Name = "LetterMinigame";
-            Size = new Size(400, 400);
-            KeyDown += LetterMinigame_KeyDown;
+            Name = "OrderMinigame";
+            MouseDown += OrderMinigame_MouseDown;
             ResumeLayout(false);
         }
 

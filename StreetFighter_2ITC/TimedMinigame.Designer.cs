@@ -1,6 +1,6 @@
 ﻿namespace StreetFighter_2ITC
 {
-    partial class LetterMinigame
+    partial class TimedMinigame
     {
         /// <summary> 
         /// Vyžaduje se proměnná návrháře.
@@ -28,21 +28,28 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
+            timer1 = new System.Windows.Forms.Timer(components);
             SuspendLayout();
             // 
-            // LetterMinigame
+            // timer1
+            // 
+            timer1.Interval = 17;
+            timer1.Tick += timer1_Tick;
+            // 
+            // TimedMinigame
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = SystemColors.GradientActiveCaption;
             BorderStyle = BorderStyle.FixedSingle;
-            DoubleBuffered = true;
-            Name = "LetterMinigame";
-            Size = new Size(400, 400);
-            KeyDown += LetterMinigame_KeyDown;
+            Name = "TimedMinigame";
+            Size = new Size(398, 398);
+            Paint += TimedMinigame_Paint;
             ResumeLayout(false);
         }
 
         #endregion
+
+        protected System.Windows.Forms.Timer timer1;
     }
 }
