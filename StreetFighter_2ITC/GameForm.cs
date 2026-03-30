@@ -100,8 +100,8 @@ namespace StreetFighter_2ITC
             
             //CircleMinigame minigame = new CircleMinigame();
             //LetterMinigame minigame = new LetterMinigame();
-            OrderMinigame minigame = new OrderMinigame();
-            panel1.Controls.Add(minigame);
+            IMinigame minigame = new EscapeMinigame();
+            panel1.Controls.Add(minigame as UserControl);
 
             minigame.MinigameEnded += () =>
             {
@@ -115,7 +115,7 @@ namespace StreetFighter_2ITC
                     AddLog($"{player.Name} damaged {opponent.Name} - {dmg} hp");
                 }
                 
-                minigame.Dispose();
+                (minigame as Control)?.Dispose();
                 SwitchFighter();
                 ChangeGameState(GameState.EnemyTurn);
                 gameflowTimer.Start();
