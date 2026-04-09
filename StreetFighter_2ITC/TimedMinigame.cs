@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace StreetFighter_2ITC
 {
-    public partial class TimedMinigame : UserControl, IMinigame
+    public abstract partial class TimedMinigame : UserControl, IMinigame
     {
         public event Action MinigameEnded;
 

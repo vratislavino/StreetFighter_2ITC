@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
+using System.Reflection;
 using System.Text;
 using System.Windows.Forms;
 using static System.Net.Mime.MediaTypeNames;
@@ -25,6 +27,8 @@ namespace StreetFighter_2ITC
 
         float damageMultiplier = 0.1f;
 
+        List<Type> availableMinigames = new List<Type>();
+
         public GameForm()
         {
             InitializeComponent();
@@ -46,7 +50,24 @@ namespace StreetFighter_2ITC
                 GameState.EnemyTurn :
                 GameState.WaitingForMinigame);
 
+            LoadMinigameTypes();
+
             gameflowTimer.Start();
+        }
+
+        private void LoadMinigameTypes()
+        {
+            Assembly ass = Assembly.GetExecutingAssembly();
+            LoadMinigamesFromAssembly(ass);
+        }
+
+        private void LoadMinigamesFromAssembly(Assembly ass)
+        {
+            var types = ass.GetTypes().ToList();
+            var filtered = types.Where(t => t.IsAssignableTo(typeof(IMinigame)) && !t.IsAbstract && t.IsClass);
+            availableMinigames.AddRange(filtered);
+            
+            Debug.WriteLine(string.Join<Type>("\n", filtered));
         }
 
         private void gameflowTimer_Tick(object sender, EventArgs e)
@@ -95,12 +116,19 @@ namespace StreetFighter_2ITC
             secondsToStart = PREMINIGAME_TIMER;
         }
 
+        private IMinigame ChooseRandomMinigame()
+        {
+            int rand = generator.Next(0, availableMinigames.Count);
+            Type typ = availableMinigames[rand];
+
+            var minigame = (IMinigame)Activator.CreateInstance(typ);
+            return minigame;
+        }
+
         private void StartRandomMinigame() {
-            // choose random minigame - later
+
+            IMinigame minigame = ChooseRandomMinigame();
             
-            //CircleMinigame minigame = new CircleMinigame();
-            //LetterMinigame minigame = new LetterMinigame();
-            IMinigame minigame = new EscapeMinigame();
             panel1.Controls.Add(minigame as UserControl);
 
             minigame.MinigameEnded += () =>
@@ -110,6 +138,7 @@ namespace StreetFighter_2ITC
                     AddLog($"{opponent.Name} dodged!");
                 }
                 else {
+                    
                     int dmg = CalculateDamage(player.Damage, minigame.GetScore());
                     opponentFighter.CurrentHp -= dmg;
                     AddLog($"{player.Name} damaged {opponent.Name} - {dmg} hp");
