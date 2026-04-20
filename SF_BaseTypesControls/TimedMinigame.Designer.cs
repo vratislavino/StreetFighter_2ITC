@@ -1,4 +1,4 @@
-﻿namespace StreetFighter_2ITC
+﻿namespace SF_BaseTypesControls
 {
     partial class TimedMinigame
     {

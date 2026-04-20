@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
+using SF_BaseTypesControls;
 
 namespace StreetFighter_2ITC
 {

@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace StreetFighter_2ITC
+namespace SF_BaseTypesControls
 {
     public abstract partial class TimedMinigame : UserControl, IMinigame
     {
@@ -16,7 +16,7 @@ namespace StreetFighter_2ITC
 
         protected int score;
 
-        protected float maxTime = 5f;
+        protected float maxTime = 4f;
         protected float remainingTime;
 
         public TimedMinigame()

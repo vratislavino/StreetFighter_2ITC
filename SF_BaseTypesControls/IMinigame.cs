@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace StreetFighter_2ITC
+namespace SF_BaseTypesControls
 {
     public interface IMinigame
     {
