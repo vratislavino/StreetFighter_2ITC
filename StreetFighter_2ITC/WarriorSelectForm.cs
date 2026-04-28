@@ -2,6 +2,8 @@ namespace StreetFighter_2ITC
 {
     public partial class WarriorSelectForm : Form
     {
+        MinigameLoader minigameLoader = new MinigameLoader();
+
         List<FighterModel> availableFighters = new List<FighterModel>()
         {
             new FighterModel() {
@@ -30,6 +32,14 @@ namespace StreetFighter_2ITC
             CreateFighterThumbnails();
 
             OnFighterSelected(availableFighters.First());
+
+            LoadMinigames();
+        }
+
+        private void LoadMinigames()
+        {
+            minigameLoader.LoadDefaultMinigameTypes();
+            // Load dalších minigames? 
         }
 
         private void CreateFighterThumbnails()
