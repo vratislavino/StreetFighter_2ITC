@@ -66,15 +66,17 @@ namespace StreetFighter_2ITC
             currentFighter = availableFighters.IndexOf(model);
             fighterSelectOverview1.SetFighter(model);
         }
-        
+
         private void startGameButton_Click(object sender, EventArgs e)
         {
-            if (currentFighter == -1) {
+            if (currentFighter == -1)
+            {
                 MessageBox.Show("You dont have fighter!");
                 return;
             }
 
-            if (enemyFighter == -1) {
+            if (enemyFighter == -1)
+            {
                 button1_Click(null, null);
             }
 
@@ -83,10 +85,11 @@ namespace StreetFighter_2ITC
                 availableFighters[enemyFighter]
                 );
             gf.Show();
-            
+
             this.Hide();
 
-            gf.FormClosing += (s, evt) => {
+            gf.FormClosing += (s, evt) =>
+            {
                 this.Show();
             };
         }
@@ -95,7 +98,7 @@ namespace StreetFighter_2ITC
         {
             int enemyIndex = -1;
             Random rand = new Random();
-            
+
             do
             {
                 enemyIndex = rand.Next(0, availableFighters.Count);
@@ -103,6 +106,16 @@ namespace StreetFighter_2ITC
 
             enemyFighter = enemyIndex;
             fighterSelectOverview2.SetFighter(availableFighters[enemyIndex]);
+        }
+
+        private void setupMinigamesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MinigameManagement mgm = new MinigameManagement(minigameLoader);
+            mgm.ShowDialog();
+            if(mgm.DialogResult == DialogResult.OK)
+            {
+                label1.Text = "Aktivováno miniher: " + MinigameLoader.LoadedMinigames.Count;
+            };
         }
     }
 }

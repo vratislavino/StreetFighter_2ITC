@@ -51,8 +51,7 @@ namespace StreetFighter_2ITC
                 GameState.EnemyTurn :
                 GameState.WaitingForMinigame);
 
-            // TODO: Tohle tady nepotřebujeme protože to bude přicházet z MinigameLoaderu
-            //LoadMinigameTypes();
+
             availableMinigames = MinigameLoader.LoadedMinigames;
 
             gameflowTimer.Start();
